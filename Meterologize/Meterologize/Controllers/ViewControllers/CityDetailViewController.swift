@@ -27,8 +27,15 @@ class CityDetailViewController: UIViewController {
 
 		updateViews()
     }
+    
+ 
 
     @IBAction func saveButtonTapped(_ sender: Any) {
+        guard let city = objectToRecieveTheDataFromOurPrepareForSegue,
+            let newName = cityNameTextField.text,
+              let newTemp = currentTempTextField.text else {return}
+        CityController.sharedInstance.updateCity(cityToUpdate: city, newName: <#T##String#>, newTemp: Double(newTemp) ?? 0.0)
+        navigationController?.popViewController(animated: true)
     }
     // MARK: - Methods
 	func updateViews() {
@@ -36,7 +43,7 @@ class CityDetailViewController: UIViewController {
 
 		cityNameTextField.text = city.name
         currentStatusLabel.text = city.currentStatus
-		cityTempTextField.text = "\(city.currentTemp)"
+        currentTempTextField.text = "\(city.currentTemp)"
 		projectedHighLabel.text = "\(city.dailyHigh)"
 		projectedLowLabel.text = "\(city.dailyLow)"
 

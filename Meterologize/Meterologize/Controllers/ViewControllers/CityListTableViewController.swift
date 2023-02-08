@@ -26,7 +26,10 @@ class CityListTableViewController: UITableViewController {
 		CityController.sharedInstance.createCity(name: cityName, temp: Double(cityTemp) ?? 0)
 		updateTableView()
 	}
-
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
+    }
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return CityController.sharedInstance.cities.count
